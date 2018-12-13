@@ -1,10 +1,15 @@
-﻿namespace TOTVS.PDV.Services.Models
+﻿using System.Collections.Generic;
+
+namespace TOTVS.PDV.Services.Models
 {
     /// <summary>
     /// Classe responsável pelo gerenciamento de quantidades de cédulas e moedas
     /// </summary>
     public class Dinheiro
     {
+        #region Construtores
+        private Dinheiro() { }
+
         public Dinheiro(float valor, int quantidade, TipoDinheiro tipo, string urlImagem, string descricao)
         {
             Valor = valor;
@@ -13,12 +18,20 @@
             UrlImagem = urlImagem;
             Descricao = descricao;
         }
+        #endregion
+
+        #region Propriedades
+        /// <summary>
+        /// Chave primária
+        /// </summary>
+        /// <example>Inteiro superior a zero</example>
+        public int IdDinheiro { get; private set; }
 
         /// <summary>
         /// Valor contábil da cédula ou moeda
         /// </summary>
         /// <example>0.5f, 0.1f, 10, 100</example>
-        public float Valor { get; }
+        public float Valor { get; private set; }
 
         /// <summary>
         /// Quantidade disponível para realizar transação
@@ -30,7 +43,7 @@
         /// Tipo do dinheiro: cédula ou moeda
         /// </summary>
         /// <example>1 = cédula, 2 = Moeda</example>
-        public TipoDinheiro Tipo { get; }
+        public TipoDinheiro Tipo { get; private set; }
 
         /// <summary>
         /// Url completa com uma imagem da cédula ou moeda
@@ -42,7 +55,7 @@
         /// Descritivo da cédula ou moeda
         /// </summary>
         /// <example>1 real, 25 centavos</example>
-        public string Descricao { get; }
+        public string Descricao { get; private set; }
 
         /// <summary>
         /// Indica se a cédula ou moeda ainda está em circulação
@@ -50,10 +63,36 @@
         /// <example>1 real, 25 centavos</example>
         public bool Ativo { get; private set; } = true;
 
+        /// <summary>
+        /// Tipo do dinheiro
+        /// </summary>
         public enum TipoDinheiro
         {
             Cedula = 1,
             Moeda = 2
+        }
+        #endregion
+
+        #region Relacionamentos
+        /// <summary>
+        /// Lista de relacionamento
+        /// </summary>
+        /// <example>Inteiro superior a zero</example>
+        public List<Troco> TrocoList { get; private set; }
+        #endregion
+
+        #region Ações
+
+        /// <summary>
+        /// Altera algumas informações de armazenamento de dinheiro
+        /// </summary>
+        /// <returns>this</returns>
+        public Dinheiro Alterar(int quantidade, string urlImagem)
+        {
+            Quantidade = quantidade;
+            UrlImagem = urlImagem;
+
+            return this;
         }
 
         /// <summary>
@@ -85,5 +124,6 @@
             Ativo = true;
             return this;
         }
+        #endregion
     }
 }

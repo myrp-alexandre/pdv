@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TOTVS.PDV.Infra.Data.Contracts.Repository;
+using TOTVS.PDV.Infra.Data.Contracts.Repositories;
 using TOTVS.PDV.Services.Contracts;
 using TOTVS.PDV.Services.Models;
 

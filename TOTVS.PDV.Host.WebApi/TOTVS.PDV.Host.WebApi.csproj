@@ -10,6 +10,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TOTVS.PDV.Application.Messages\TOTVS.PDV.Application.Messages.csproj" />
+    <ProjectReference Include="..\TOTVS.PDV.Infra.CrossCutting.DI\TOTVS.PDV.Infra.CrossCutting.DI.csproj" />
+    <ProjectReference Include="..\TOTVS.PDV.Infra.Data\TOTVS.PDV.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TOTVS.PDV.Infra.Data.Contracts.Repository;
-using TOTVS.PDV.Infra.Data.Repository;
+using TOTVS.PDV.Infra.Data.Context;
+using TOTVS.PDV.Infra.Data.Contracts.Repositories;
+using TOTVS.PDV.Infra.Data.Repositories;
 using TOTVS.PDV.Services;
 using TOTVS.PDV.Services.Contracts;
 
@@ -9,8 +10,17 @@ namespace TOTVS.PDV.Infra.CrossCutting.DI
 {
     public static class DIFactory
     {
+
+        //private static DbContextOptions GetOptions(string connectionString)
+        //{
+        //    return SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
+        //}
+
         public static IServiceCollection ConfigureDI(IServiceCollection services, IConfiguration configuration)
         {
+            //services.AddDbContext<DbContextPDV>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionConfiguracao")));
+
+
             ConfigureApplicationServices(services);
             ConfigureServices(services);
             ConfigureRepository(services);

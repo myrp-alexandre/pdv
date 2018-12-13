@@ -8,35 +8,50 @@ namespace TOTVS.PDV.Services.Models
     /// </summary>
     public class Transacao
     {
+        #region Construtores
+        private Transacao() { }
+
         public Transacao(float total, float recebido, List<Troco> trocoList)
         {
             Total = total;
             Recebido = recebido;
             TrocoList = trocoList;
+            ValorRestante = Total - TrocoList.Sum(s => s.Quantidade * s.Dinheiro.Valor);
         }
+        #endregion
 
+        #region Propriedades
         /// <summary>
-        /// Lista de objetos da entidade Troco (<see cref="Troco"/>)
+        /// Chave primária
         /// </summary>
-        /// <example>Lista de Objetos</example>
-        public List<Troco> TrocoList { get; }
+        /// <example>Inteiro superior a zero</example>
+        public int IdTransacao { get; private set; } = 0;
 
         /// <summary>
         /// Valor total a ser pago
         /// </summary>
         /// <example>95.2f</example>
-        public float Total { get; }
+        public float Total { get; private set; }
 
         /// <summary>
         /// Valor efetivamente pago
         /// </summary>
         /// <example>100</example>
-        public float Recebido { get; }
+        public float Recebido { get; private set; }
 
         /// <summary>
         /// Valor restante que não pôde ser pago pelo algoritmo de mínima cédula/moeda
         /// </summary>
         /// <example>0.03f</example>
-        public float ValorRestante => Total - TrocoList.Sum(s => s.Quantidade * s.Dinheiro.Valor);
+        public float ValorRestante { get; private set; }
+        #endregion
+
+        #region Relacionamento
+        /// <summary>
+        /// Lista de objetos da entidade Troco (<see cref="Troco"/>)
+        /// </summary>
+        /// <example>Lista de Objetos</example>
+        public List<Troco> TrocoList { get; private set; }
+        #endregion
     }
 }
