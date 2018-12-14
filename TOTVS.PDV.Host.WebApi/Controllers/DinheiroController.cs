@@ -1,18 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TOTVS.PDV.Application.Messages;
 using TOTVS.PDV.Application.Messages.Dinheiro;
+using TOTVS.PDV.Application.Services.Contracts;
 
 namespace TOTVS.PDV.Host.WebApi.Controllers
 {
-    [Produces("application/json"), Route("api/[controller]")]
+    [Route("api/dinheiro"), Produces("application/json")]
+    [ApiController]
     public class DinheiroController : Controller
     {
-        [HttpPost, Route("")]
-        public IActionResult Adicionar([FromBody]DinheiroRequest request) => null;
+        public IDinheiroApplicationService DinheiroApplicationService { get; }
 
-        //[HttpPut, Route("")]
-        //public IActionResult Atualizar([FromBody]RegraAtualizarMessageRequest request) => RegraApplicationService.Atualizar(request);
+        public DinheiroController(IDinheiroApplicationService dinheiroApplicationService) => DinheiroApplicationService = dinheiroApplicationService;
 
-        //[HttpGet, Route("paginado")]
-        //public IActionResult ObterPaginados([FromQuery] PaginadosMessageRequest request) => RegraApplicationService.ObterPaginados(request);
+        [HttpGet, Route("")]
+        public IActionResult ObterTodos() => DinheiroApplicationService.ObterTodos();
     }
 }

@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TOTVS.PDV.Application.Messages\TOTVS.PDV.Application.Messages.csproj" />
+    <ProjectReference Include="..\TOTVS.PDV.Services.Models\TOTVS.PDV.Services.Models.csproj" />
+  </ItemGroup>
+
 </Project>

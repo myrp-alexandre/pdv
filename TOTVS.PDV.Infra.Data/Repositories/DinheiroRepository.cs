@@ -11,10 +11,8 @@ namespace TOTVS.PDV.Infra.Data.Repositories
     public class DinheiroRepository : IDinheiroRepository
     {
         public DbContextPDV DbContextPDV { get; }
-        public DinheiroRepository(DbContextPDV dbContextPDV)
-        {
-            DbContextPDV = dbContextPDV;
-        }
+
+        public DinheiroRepository(DbContextPDV dbContextPDV) => DbContextPDV = dbContextPDV;
 
         public Dinheiro Adicionar(Dinheiro dinheiro)
         {

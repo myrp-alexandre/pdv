@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TOTVS.PDV.Host.WebApi.Configurations;
@@ -19,6 +20,8 @@ namespace TOTVS.PDV.Host.WebApi
         {
             services.AddOptions();
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.ConfigureDbContext(Configuration);
             services.ConfigureDI(Configuration);
         }
@@ -30,8 +33,15 @@ namespace TOTVS.PDV.Host.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
             app.UseMigrations(env);
+
+            app.UseHttpsRedirection();
+            app.UseMvc();
         }
     }
 }

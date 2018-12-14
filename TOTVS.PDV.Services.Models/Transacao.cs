@@ -16,7 +16,7 @@ namespace TOTVS.PDV.Services.Models
             Total = total;
             Recebido = recebido;
             TrocoList = trocoList;
-            ValorRestante = Total - TrocoList.Sum(s => s.Quantidade * s.Dinheiro.Valor);
+            ValorRestante = Recebido - Total - TrocoList.Sum(s => s.Quantidade * s.Dinheiro.Valor);
         }
         #endregion
 

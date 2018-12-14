@@ -124,6 +124,18 @@ namespace TOTVS.PDV.Services.Models
             Ativo = true;
             return this;
         }
+
+        /// <summary>
+        /// Seta a propriedade Id da entidade. 
+        /// Uso para seed e quando for utilizado SqlCommand.
+        /// </summary>
+        /// <returns>this</returns>
+        public Dinheiro SetId(int id)
+        {
+            IdDinheiro = id;
+            return this;
+        }
+
         #endregion
     }
 }

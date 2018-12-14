@@ -3,8 +3,8 @@ using TOTVS.PDV.Services.Models;
 
 namespace TOTVS.PDV.Services.Contracts
 {
-    public interface IFluxoService
+    public interface IDinheiroService
     {
-        List<Troco> ObterTroco(float total, float recebido);
+        List<Dinheiro> ObterTodos();
     }
 }

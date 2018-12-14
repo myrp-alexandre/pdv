@@ -25,11 +25,12 @@ namespace TOTVS.PDV.Host.WebApi.Configurations
                 {
                     var db = serviceScope.ServiceProvider.GetService<DbContextPDV>();
 
-                    if (!db.Database.EnsureCreated())
-                    {
-                        db.Database.Migrate();
-                        db.Database.EnsureCreated();
-                    }
+                    //TODO: Descomentar para a primeira execução ou rodar "update-database" no package manager console
+                    //if (!db.Database.EnsureCreated())
+                    //{
+                    //    db.Database.Migrate();
+                    //    db.Database.EnsureCreated();
+                    //}
                 }
             }
 

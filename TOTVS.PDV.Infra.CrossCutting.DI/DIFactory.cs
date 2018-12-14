@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TOTVS.PDV.Infra.Data.Context;
+using TOTVS.PDV.Application.Services;
+using TOTVS.PDV.Application.Services.Contracts;
 using TOTVS.PDV.Infra.Data.Contracts.Repositories;
 using TOTVS.PDV.Infra.Data.Repositories;
 using TOTVS.PDV.Services;
@@ -10,17 +11,8 @@ namespace TOTVS.PDV.Infra.CrossCutting.DI
 {
     public static class DIFactory
     {
-
-        //private static DbContextOptions GetOptions(string connectionString)
-        //{
-        //    return SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
-        //}
-
         public static IServiceCollection ConfigureDI(IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddDbContext<DbContextPDV>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionConfiguracao")));
-
-
             ConfigureApplicationServices(services);
             ConfigureServices(services);
             ConfigureRepository(services);
@@ -30,17 +22,22 @@ namespace TOTVS.PDV.Infra.CrossCutting.DI
 
         private static void ConfigureApplicationServices(IServiceCollection services)
         {
-      
+            services.AddScoped<IDinheiroApplicationService, DinheiroApplicationService>();
+            services.AddScoped<ITransacaoApplicationService, TransacaoApplicationService>();            
         }
 
         private static void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IFluxoService, FluxoService>();
+            services.AddScoped<ITransacaoService, TransacaoService>();
+            services.AddScoped<IDinheiroService, DinheiroService>();
         }
 
         private static void ConfigureRepository(IServiceCollection services)
         {
-            services.AddScoped<IDinheiroRepository, DinheiroRepository>(); 
+            services.AddScoped<IDinheiroRepository, DinheiroRepository>();
+            services.AddScoped<ITransacaoRepository, TransacaoRepository>();
+            services.AddScoped<ITrocoRepository, TrocoRepository>();
+            
         }
     }
 }
