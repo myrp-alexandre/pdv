@@ -15,6 +15,8 @@ Observação: Só vale para primeira execução.
 
 ## Dívidas técnicas e observações:
 
+- Trabalhei na master, mas nos sistemas que atuo utilizamos o gitflow com PR;
+
 - Eu não utilizei nenhuma biblioteca para testes para essa prova. Mas normalmente eu utilizaria o Moq e o NBuilder;
 
 - Eu fiz o mapeamento sem utilizar o AutoMapper. Nos sistemas que atuo atualmente também não utilizamos, pois o reflection consome ms das aplicações. Como o nível de criticidade é muito alto qualquer tempo tem muito valor;
