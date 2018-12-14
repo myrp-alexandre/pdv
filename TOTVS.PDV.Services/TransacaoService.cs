@@ -28,11 +28,11 @@ namespace TOTVS.PDV.Services
                 List<Troco> trocoList = CalcularTroco(total, recebido, DinheiroRepository.ObterTodos());
                 Transacao transacao = null;
 
+                transacao = new Transacao(total, recebido, trocoList);
+                TransacaoRepository.Adicionar(transacao);
+
                 if (trocoList != null && trocoList.Any())
                 {
-                    transacao = new Transacao(total, recebido, trocoList);
-                    TransacaoRepository.Adicionar(transacao);
-
                     foreach (Troco trocoItem in trocoList)
                     {
                         for (int i = 0; i < trocoItem.Quantidade; i++) trocoItem.Dinheiro.Retirar();

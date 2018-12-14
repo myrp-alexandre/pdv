@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TOTVS.PDV.Services.Models
@@ -16,7 +17,7 @@ namespace TOTVS.PDV.Services.Models
             Total = total;
             Recebido = recebido;
             TrocoList = trocoList;
-            ValorRestante = Recebido - Total - TrocoList.Sum(s => s.Quantidade * s.Dinheiro.Valor);
+            ValorRestante = (TrocoList == null || !TrocoList.Any()) ? 0 : (int)Math.Truncate(Recebido - Total - TrocoList.Sum(s => s.Quantidade * s.Dinheiro.Valor));
         }
         #endregion
 
